@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://pm0xd2002sdu"]
+
+[ext_resource type="Texture2D" uid="uid://d3hmm32cu5gvj" path="res://grasslands_sunset_4k.exr" id="1_glv2v"]
+[ext_resource type="Shader" uid="uid://i016slbnw61w" path="res://water.gdshader" id="2_r0du0"]
+[ext_resource type="Texture2D" uid="uid://bs1sxk8sbjbe1" path="res://water_normal_map.png" id="3_cm0pq"]
+[ext_resource type="Script" uid="uid://b7pjnitbqy1fs" path="res://browser_input_fixes.gd" id="5_3dxm6"]
+[ext_resource type="MeshLibrary" uid="uid://cmr6ejhrd0kbm" path="res://tile.tres" id="6_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://biejyyj2idqpm" path="res://Character.tscn" id="7_lgr22"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rxg2q"]
+panorama = ExtResource("1_glv2v")
+
+[sub_resource type="Sky" id="Sky_uuv0r"]
+sky_material = SubResource("PanoramaSkyMaterial_rxg2q")
+
+[sub_resource type="Environment" id="Environment_qq81q"]
+background_mode = 2
+sky = SubResource("Sky_uuv0r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qq81q"]
+render_priority = 0
+shader = ExtResource("2_r0du0")
+shader_parameter/water_color = Color(0, 0.35, 0.7, 1)
+shader_parameter/normal_map = ExtResource("3_cm0pq")
+shader_parameter/wave_speed = 0.05
+shader_parameter/wave_height = 0.1
+shader_parameter/reflection_strength = 0.5
+shader_parameter/uv_tiling = 4.0
+
+[node name="Node3D" type="Node3D" unique_id=179341445]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1621651699]
+environment = SubResource("Environment_qq81q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=319020703]
+transform = Transform3D(0.6926196, 0.34404442, -0.63396496, -0.042975064, 0.89703786, 0.43985945, 0.72002167, -0.2774106, 0.6360914, -21.382122, 23.602356, 24.539423)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1919488001]
+size = Vector3(10, 1, 10)
+material = SubResource("ShaderMaterial_qq81q")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=89665337]
+script = ExtResource("5_3dxm6")
+
+[node name="GridMap" type="GridMap" parent="." unique_id=2052242952]
+mesh_library = ExtResource("6_3dxm6")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(7, 65523, 1, 7, 65519, 2, 7, 65525, 4, 9, 65525, 1441792, 9, 65527, 1441795, 9, 65529, 1441795, 9, 65531, 1441795, 11, 65527, 1441792, 11, 65529, 1441794, 5, 65525, 1441796, 3, 65525, 1441796, 5, 65527, 1441795, 7, 65527, 1441796, 7, 65529, 1441793, 3, 65527, 655360, 5, 65529, 655362, 9, 65533, 655362, 7, 65531, 655364, 1, 65527, 655364, 1, 65525, 655364, 7, 65521, 655363, 9, 65521, 655363, 11, 65521, 655363, 13, 65521, 655363, 9, 65523, 655364, 5, 65521, 655364, 11, 65525, 655362, 11, 65523, 655364, 13, 65523, 655364, 13, 65525, 655364, 13, 65527, 655364, 13, 65529, 655364, 13, 65531, 655364, 13, 65533, 655364, 13, 65535, 655362, 11, 65533, 655360, 11, 65531, 655363, 15, 65521, 655360, 9, 65519, 655363, 11, 65519, 655363, 13, 65519, 655363, 15, 65519, 655364, 9, 65517, 655362, 11, 65517, 655362, 13, 65517, 655362, 15, 65517, 655362, 7, 65517, 655362)
+}
+
+[node name="Character" parent="." unique_id=889286407 instance=ExtResource("7_lgr22")]
+transform = Transform3D(1, 0, 0, 0, 0.9999984, 0.001765877, 0, -0.001765877, 0.9999984, 11.644279, 0.72121334, -15.214053)

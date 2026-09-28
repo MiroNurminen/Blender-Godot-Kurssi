@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://biejyyj2idqpm"]
+
+[ext_resource type="PackedScene" uid="uid://bi73wkchb3djm" path="res://Egg.glb" id="1_oolk3"]
+[ext_resource type="Script" uid="uid://c32pgkwhymi5s" path="res://tps_controller.gd" id="2_7ig0a"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qq81q"]
+radius = 0.35107422
+height = 1.0223236
+
+[node name="Character" unique_id=889286407 instance=ExtResource("1_oolk3")]
+script = ExtResource("2_7ig0a")
+
+[node name="Camera3D" type="Camera3D" parent="." index="1" unique_id=190335715]
+transform = Transform3D(1, 0, 0, 0, 0.8971141, 0.441799, 0, -0.441799, 0.8971141, -0.0066701174, 1.3111434, 0.9273844)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1300983724]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1218701288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5201678, 0)
+shape = SubResource("CapsuleShape3D_qq81q")
